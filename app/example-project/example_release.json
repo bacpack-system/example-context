@@ -1,0 +1,30 @@
+{
+  "Env": {},
+  "Git": {
+    "URI": "https://github.com/bacpack-system/example-project.git",
+    "Revision": "v1.0.0"
+  },
+  "Build": {
+    "CMake": {
+      "Defines": {
+        "CMAKE_BUILD_TYPE": "Release",
+        "BRINGAUTO_INSTALL": "ON"
+      }
+    }
+  },
+  "Package": {
+    "Name": "example-project",
+    "VersionTag": "v1.0.0",
+    "PlatformString": {
+      "Mode": "auto"
+    },
+    "IsLibrary": false,
+    "IsDevLib": false,
+    "IsDebug": false
+  },
+  "DockerMatrix": {
+    "ImageNames": [
+      "fedora41"
+    ]
+  }
+}
