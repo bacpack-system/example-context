@@ -1,4 +1,4 @@
-FROM fedora:41
+FROM fedora:42
 
 USER root
 RUN echo root:1234 | chpasswd
