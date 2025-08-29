@@ -6,3 +6,8 @@ The Package Context is used by [Packager](https://github.com/bacpack-system/pack
 Packages and Apps defined in the Context.
 
 Packages defined in this Package Context are used by [example Project](https://github.com/bacpack-system/example-project).
+
+for CMCONF Global Config see [config/]
+
+
+[config/]: ./config/
