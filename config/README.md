@@ -27,10 +27,10 @@ Let `X` be the SYSTEM name.
 
 - Rename `CMCONF_EXAMPLEConfig.cmake` to `CMCONF_XConfig.cmake`,
 - Rename `EXAMPLE` to `X` in `CMCONF_XConfig.cmake`,
-- rename `EXAMPLE` to `X` in `CMLibStorage.cmake` in the forked example-project Git repository.
+- Rename `EXAMPLE` to `X` in `CMLibStorage.cmake` in the forked example-project Git repository.
 - Install `CMCONF_XConfig.cmake` as described above.
 
 
-[example]
+[example-project]: https://github.com/bacpack-system/example-project
 [cmakelib]: https://github.com/cmakelib/cmakelib
 [example usage documentation]: https://bacpack-system.github.io/example_usage
