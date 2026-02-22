@@ -1,5 +1,5 @@
 #
-# Example configuration for CMCONF system.
+# Example configuration.
 #
 
 FIND_PACKAGE(CMLIB REQUIRED COMPONENTS CMCONF)
@@ -7,28 +7,20 @@ FIND_PACKAGE(CMLIB REQUIRED COMPONENTS CMCONF)
 CMCONF_INIT_SYSTEM(EXAMPLE)
 
 #
-# Setting using upstream Package Repository by default for this system. This can be overridden by
-# App in CMakeLists.txt.
+# It can be used to statically define local Package Repository.
+# Not only by BA_PACKAGE_LOCAL_PATH ENV variable.
 #
 CMCONF_SET(BA_PACKAGE_LOCAL_USE OFF)
-CMCONF_SET(BA_PACKAGE_LOCAL_PATH "")
+CMCONF_SET(BA_PACKAGE_LOCAL_PATH "<path_to_local_repo>")
 
 #
-# The http authorization header is usually used for accessing private Package Repositories. This
-# example does not need it, but the variable must be set.
+# It works for a publicly accessible repository.
 #
-CMCONF_SET(BA_PACKAGE_HTTP_AUTHORIZATION_HEADER "")
-
-#
-# Authorization header can be set from ENV variable
-#
-#CMCONF_SET(BA_PACKAGE_HTTP_AUTHORIZATION_HEADER "$ENV{ACCESS_TOKEN_ROCKS}")
-
-#
-# Setting BringAuto's Package Repository URI Template
-#
-CMCONF_SET(BA_PACKAGE_URI_REVISION master)
-CMCONF_SET(BA_PACKAGE_URI_TEMPLATE_REMOTE "https://gitea.example.com/my-project/package-repository/media/<REVISION>/package/<GIT_PATH>/<PACKAGE_GROUP_NAME>/<ARCHIVE_NAME>")
+CMCONF_SET(BA_PACKAGE_GIT_ARCHIVE_PATH_TEMPLATE "")
+CMCONF_SET(BA_PACKAGE_HTTP_HEADER "")
+CMCONF_SET(BA_PACKAGE_TEMPLATE_ARGS_URI_ESCAPE OFF)
+CMCONF_SET(BA_PACKAGE_URI_REVISION main)
+CMCONF_SET(BA_PACKAGE_URI_TEMPLATE_REMOTE "https://gitea.example.com/username/repository/media/<REVISION>/package/<GIT_PATH>/<PACKAGE_GROUP_NAME>/<ARCHIVE_NAME>")
 
 #
 # Gitea hosted public Package Repository:
@@ -39,11 +31,14 @@ CMCONF_SET(BA_PACKAGE_URI_TEMPLATE_REMOTE "https://gitea.example.com/my-project/
 # Gitea hosted private Package Repository.
 # Do not forget to specify Access Token
 #
-#CMCONF_SET(BA_PACKAGE_HTTP_AUTHORIZATION_HEADER "token <token>")
+#CMCONF_SET(BA_PACKAGE_HTTP_HEADER "Authorization: token <token>")
 #CMCONF_SET(BA_PACKAGE_URI_TEMPLATE_REMOTE "https://gitea.example.com/username/repository/raw/<REVISION>/package/<GIT_PATH>/<PACKAGE_GROUP_NAME>/<ARCHIVE_NAME>")
 
 #
 # Gitlab hosted private Package Repository.
+# gitlab_project_id is the id of the project in Gitlab. It can be found in General setting page of the project
 #
-#CMCONF_SET(BA_PACKAGE_HTTP_AUTHORIZATION_HEADER "Bearer <token>")
-#CMCONF_SET(BA_PACKAGE_URI_TEMPLATE_REMOTE "https://gitlab.example.com/username/repository/-/raw/<REVISION>/package/<GIT_PATH>/<PACKAGE_GROUP_NAME>/<ARCHIVE_NAME>")
+#SET(gitlab_project_id 000)
+#CMCONF_SET(BA_PACKAGE_TEMPLATE_ARGS_URI_ESCAPE ON)
+#CMCONF_SET(BA_PACKAGE_HTTP_HEADER "PRIVATE-TOKEN: $ENV{GITLAB_TOKEN}")
+#CMCONF_SET(BA_PACKAGE_URI_TEMPLATE_REMOTE "https://gitlab.example.com/api/v4/projects/${gitlab_project_id}/repository/files/package%2F<GIT_PATH>%2F<PACKAGE_GROUP_NAME>%2F<ARCHIVE_NAME>/raw?ref=<REVISION>&lfs=true")
